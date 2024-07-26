@@ -28,6 +28,9 @@ jobs:
         run: |
           docker build -t ${{secrets.DOCKERHUB_USERNAME}}/$REPOSITORY:$IMAGE_TAG .
           docker image ls -a 
+          echo ------- ls ------------
           ls 
+          echo ------ ls / ------------
           ls /
+          echo ----------- fucker mother pro ------------
           docker push ${{secrets.DOCKERHUB_USERNAME}}/$REPOSITORY:$IMAGE_TAG 
