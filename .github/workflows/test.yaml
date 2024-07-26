@@ -1,0 +1,17 @@
+on: push
+
+
+name: Integration
+
+
+jobs:
+    build:
+         runs-on: upuntu-latest #runs on require 
+         steps: # steps require
+            - uses: actions/checkout@v2 # use exactly script
+            - run: |
+               echo abc
+               echo pdf
+            
+    
+    
