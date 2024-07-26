@@ -23,8 +23,5 @@ jobs:
       
       - name: Run Docker container
         run: |
-          docker run -d -p 3000:3000 --name express express
+          docker run -p 3000:3000 --name express express
       
-      - name: Execute command in Docker container
-        run: |
-          docker exec express /bin/bash -c "echo Hello from inside the container"
