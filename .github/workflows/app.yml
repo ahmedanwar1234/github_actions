@@ -1,7 +1,12 @@
-on: push
+
 
 name: run app with docker
 
+on:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
 
 
 jobs: 
