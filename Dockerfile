@@ -1,5 +1,9 @@
-FROM nginx:latest
+FROM node:latest
 
-RUN apt update -y
+WORKDIR /app
+COPY package*.json .
+RUN npm install
+COPY . .
 
+CMD [ "npm","start" ]
 EXPOSE 8080

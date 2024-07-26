@@ -1,0 +1,21 @@
+on: push
+
+name: run app with docker
+
+
+
+jobs: 
+    build: 
+         runs-on: upuntu-latest
+         steps:
+          - uses: actions/checkout@v2
+          - uses: docker/setup-buildx-action@v1
+          - run: |
+              
+              echo --------- start ----------
+              docker build -t express .
+              docker run -p -d 3000:3000 express
+              docker exec -it express /bin/bash
+
+
+              
