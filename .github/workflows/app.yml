@@ -1,26 +1,30 @@
-
-
-name: run app with docker
+name: Run App with Docker
 
 on:
-    push:
-      branches: [main]
-    pull_request:
-      branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Fix typo here: changed 'upuntu-latest' to 'ubuntu-latest'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-jobs: 
-    build: 
-         runs-on: upuntu-latest
-         steps:
-          - uses: actions/checkout@v2
-          - uses: docker/setup-buildx-action@v1
-          - run: |
-              
-              echo --------- start ----------
-              docker build -t express .
-              docker run -p -d 3000:3000 express
-              docker exec -it express /bin/bash
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-
-              
+      - name: Build Docker image
+        run: |
+          echo "--------- start ----------"
+          docker build -t express .
+      
+      - name: Run Docker container
+        run: |
+          docker run -d -p 3000:3000 --name express express
+      
+      - name: Execute command in Docker container
+        run: |
+          docker exec express /bin/bash -c "echo Hello from inside the container"
